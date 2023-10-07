@@ -16,7 +16,6 @@ beforeEach(async () => {
 describe('Getting Blogs', () => {
   test('Returns correct number of blogs', async () => {
     const blogs = await helper.blogsInDb()
-    console.log(blogs)
     expect(blogs).toHaveLength(helper.initialBlogs.length)
   })
 })
@@ -27,6 +26,7 @@ describe('Blog document format', () => {
     expect(blogs[0].id).toBeDefined()
   })
 })
+
 describe('Adding Blogs', () => {
   test('A new blog has been saved', async () => {
     const newBlog = {
@@ -45,6 +45,48 @@ describe('Adding Blogs', () => {
 
     const titles = newBlogList.map(n => n.title)
     expect(titles).toContain('A new beginning')
+    console.log(titles.length)
+  })
+})
+
+describe('Deleting a Blog', () => {
+  test('Blog does not exist anymore', async () => {
+    const blogsAtBeginning = await helper.blogsInDb()
+    const id = blogsAtBeginning[0].id
+
+    await api
+      .delete(`/api/blog/${id}`)
+      .expect(204)
+
+    const blogsAtEnd = await helper.blogsInDb()
+    expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length - 1)
+
+    await api
+      .get(`/api/blog/${id}`)
+      .expect(404)
+  })
+})
+
+describe('Updating a blog', () => {
+  test('Likes have been updated', async () => {
+    const blogsAtBeginning = await helper.blogsInDb()
+    const id = blogsAtBeginning[0].id
+
+    const newBlog = {
+      author: 'Vlad',
+      title: 'Bossa Nova',
+      likes: 99,
+      url: 'https://yahoo.com'
+    }
+
+    await api
+      .put(`/api/blog/${id}`)
+      .send(newBlog)
+      .expect(200)
+
+    const res = await api.get(`/api/blog/${id}`)
+    const updatedBlog = res.body
+    expect(newBlog.likes).toBe(updatedBlog.likes)
   })
 })
 
