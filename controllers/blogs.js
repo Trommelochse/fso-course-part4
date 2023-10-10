@@ -59,10 +59,28 @@ blogRouter.post('/', async (request, response) => {
 })
 
 blogRouter.delete('/:id', async (request, response) => {
-  const id = request.params.id
-  await Blog.findByIdAndRemove(id)
+  const decodedToken = jwt.verify(request.token, process.env.SECRET)
 
-  response.sendStatus(204)
+  const id = request.params.id
+  const blog = await Blog.findById(id)
+
+  if (!blog) {
+    return response.sendStatus(204)
+  }
+
+  if(decodedToken.id === blog.user._id.toString()) {
+    await Blog.findByIdAndRemove(id)
+
+    const user = await User.findById(decodedToken.id)
+    user.blogs = user.blogs.filter(b => b.toString() !== id)
+    user.save()
+
+    response.sendStatus(204)
+  } else {
+    return response.status(401).json({
+      error: 'Not auhorized (wrong user)'
+    })
+  }
 })
 
 blogRouter.put('/:id', async (request, response) => {

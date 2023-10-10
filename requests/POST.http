@@ -1,12 +1,12 @@
 POST http://localhost:3001/api/blogs/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hc3RlciIsImlkIjoiNjUyNWE4NTg3MmY1YWM1Yzk2MTkzZTYwIiwiaWF0IjoxNjk2OTY2NzYwfQ.chrgYBGYxlIRW4nYoF5He9z2_EK4B3s418WWu6AsGX8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hc3RlciIsImlkIjoiNjUyNWJkOGFlZjgyMTgzZmRlMDQwZjQyIiwiaWF0IjoxNjk2OTcyMTczfQ.5AkhHGeSyLAPvj4gBx4dXugPbxGfN6XdUDFUy-txg7E
 
 {
-  "title": "Mehraaaaa",
-  "author": "Niemand",
+  "title": "two",
+  "author": "you",
   "url": "https://yahoo.de",
-  "likes": 222
+  "likes": 1
 }
 
 ###
