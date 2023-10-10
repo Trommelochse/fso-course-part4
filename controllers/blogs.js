@@ -5,13 +5,6 @@ const User = require('../models/user')
 
 const blogRouter = Router()
 
-const getTokenFrom = request => {
-  const auth = request.get('Authorization')
-  if (auth && auth.match(/^Bearer/)) {
-    return auth.replace('Bearer ', '')
-  }
-}
-
 blogRouter.get('/', async (request, response) => {
   const blogs = await Blog
     .find({})
@@ -40,7 +33,7 @@ blogRouter.post('/', async (request, response) => {
     url
   } = request.body
 
-  const decodedToken = jwt.verify(getTokenFrom(request), process.env.SECRET)
+  const decodedToken = jwt.verify(request.token, process.env.SECRET)
 
   if (!decodedToken) {
     response.status(401).json({
