@@ -1,1 +1,6 @@
-GET http://localhost:3001/api/blog/
+GET http://localhost:3001/api/blogs/
+
+###
+
+
+GET http://localhost:3001/api/users/

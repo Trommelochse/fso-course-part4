@@ -1,9 +1,31 @@
-POST http://localhost:3001/api/blog/
+POST http://localhost:3001/api/blogs/
 Content-Type: application/json
 
 {
-  "title": "Second post",
-  "author": "Sonja",
-  "url": "none",
-  "likes": 2
+  "title": "Mehr",
+  "author": "Niemand",
+  "url": "https://yahoo.de",
+  "likes": 222
+}
+
+###
+
+POST http://localhost:3001/api/users/
+Content-Type: application/json
+
+{
+  "name": "Clemens",
+  "username": "clemsu",
+  "password": "Safe!"
+}
+
+
+###
+
+POST http://localhost:3001/api/login/
+Content-Type: application/json
+
+{
+  "username": "clemsu",
+  "password": "Safe!"
 }

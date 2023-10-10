@@ -35,7 +35,7 @@ describe('Adding Blogs', () => {
       likes: 15
     }
     await api
-      .post('/api/blog')
+      .post('/api/blogs')
       .send(newBlog)
       .expect(201)
       .expect('Content-Type', /application\/json/)
@@ -55,14 +55,14 @@ describe('Deleting a Blog', () => {
     const id = blogsAtBeginning[0].id
 
     await api
-      .delete(`/api/blog/${id}`)
+      .delete(`/api/blogs/${id}`)
       .expect(204)
 
     const blogsAtEnd = await helper.blogsInDb()
     expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length - 1)
 
     await api
-      .get(`/api/blog/${id}`)
+      .get(`/api/blogs/${id}`)
       .expect(404)
   })
 })
@@ -80,11 +80,11 @@ describe('Updating a blog', () => {
     }
 
     await api
-      .put(`/api/blog/${id}`)
+      .put(`/api/blogs/${id}`)
       .send(newBlog)
       .expect(200)
 
-    const res = await api.get(`/api/blog/${id}`)
+    const res = await api.get(`/api/blogs/${id}`)
     const updatedBlog = res.body
     expect(newBlog.likes).toBe(updatedBlog.likes)
   })
