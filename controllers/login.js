@@ -17,8 +17,6 @@ loginRouter.post('/', async (request, response) => {
 
   const passwordIsCorrect = await bcrypt.compare(password, user.passwordHash)
 
-  console.log(passwordIsCorrect)
-
   if (!passwordIsCorrect) {
     return response.status(401).json({
       error: 'Password does not match.'

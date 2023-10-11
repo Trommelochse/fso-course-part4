@@ -1,12 +1,12 @@
 POST http://localhost:3001/api/blogs/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hc3RlciIsImlkIjoiNjUyNWJkOGFlZjgyMTgzZmRlMDQwZjQyIiwiaWF0IjoxNjk2OTcyMTczfQ.5AkhHGeSyLAPvj4gBx4dXugPbxGfN6XdUDFUy-txg7E
+Authorization: Bearer ...
 
 {
-  "title": "two",
-  "author": "you",
-  "url": "https://yahoo.de",
-  "likes": 1
+  "title": "yesdh",
+  "author": "foooorrr",
+  "url": "https://yahoo.it",
+  "likes": 2
 }
 
 ###
@@ -16,7 +16,7 @@ Content-Type: application/json
 
 {
   "name": "me",
-  "username": "master",
+  "username": "master3",
   "password": "password"
 }
 
@@ -27,6 +27,6 @@ POST http://localhost:3001/api/login/
 Content-Type: application/json
 
 {
-  "username": "master",
+  "username": "master3",
   "password": "password"
 }
