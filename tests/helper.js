@@ -21,18 +21,12 @@ const blogsInDb = async () => {
   return response.map(blog => blog.toJSON())
 }
 
-const initialUsers = [
-  {
-    name: 'Hans Dieter',
-    username: 'Magdeburg78',
-    password: 'very_secret',
-  },
-  {
-    name: 'Clemens',
-    username: 'root',
-    password: 'changeme',
-  }
-]
+const initialUsers = [{
+  name: 'root',
+  username: 'root',
+  password: 'password'
+}]
+
 
 const usersInDb = async () => {
   const response = await User.find({})

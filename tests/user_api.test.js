@@ -13,6 +13,10 @@ beforeEach(async () => {
   await Promise.all(promises)
 })
 
+afterEach(async () => {
+  await User.deleteMany({})
+})
+
 describe('When two users exist in DB', () => {
 
   test('Creating a valid user returns 201 and stores the user in DB', async () => {
