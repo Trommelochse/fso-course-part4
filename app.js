@@ -8,6 +8,7 @@ require('express-async-errors')
 const userRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const blogRouter = require('./controllers/blogs')
+const testRouter = require('./controllers/testRouter')
 const middleware = require('./utils/middleware')
 
 mongoose.set('strictQuery', false)
@@ -19,10 +20,13 @@ app.use(express.json())
 app.use(middleware.requestLogger)
 app.use(middleware.tokenExtractor)
 
-/** define routes */
 app.use('/api/users', userRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/blogs', blogRouter)
+
+if (process.env.NODE_ENV === 'test') {
+  app.use('/api/testing', testRouter)
+}
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
