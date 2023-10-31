@@ -9,6 +9,17 @@ Authorization: Bearer ...
   "likes": 2
 }
 
+
+###
+
+POST http://localhost:3003/api/blogs/653e9ef7e4cdf343d43d1a21/comments
+Content-Type: application/json
+Authorization: Bearer ...
+
+{
+  "comment": "first comment"
+}
+
 ###
 
 POST http://localhost:3003/api/users/
